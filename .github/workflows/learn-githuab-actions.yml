@@ -1,18 +1,12 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-
-on: 
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-
-  
+on: [push]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Super-Linter
-      - uses: github/super-linter@v5.7.2
+      - uses: actions/checkout@v4
+        with:
+          python: '3.5'
+      - run: npm install -g bats
+      - run: bats -v
